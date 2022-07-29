@@ -1,0 +1,14 @@
+targets:
+  $default:
+    builders:
+      repository_gen:
+        enabled: true
+builders:
+  generators:
+    target: ":repository_gen"
+    import: "package:repository_gen/builder.dart"
+    builder_factories: ["generateSwagApi"]
+    build_extensions: { ".dart": [".g.dart"] }
+    auto_apply: dependents
+    build_to: cache
+    applies_builders: ["source_gen|combining_builder"]
